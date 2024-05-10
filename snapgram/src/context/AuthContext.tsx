@@ -35,7 +35,7 @@ const AuthProvider = ({ children }: { children: React.ReactNode }) => {
       const currentAccount = await getCurrentUser();
 
       if (currentAccount) {
-        SetUser({
+        setUser({
           id: currentAccount.$id,
           name: currentAccount.name,
           username: currentAccount.username,
@@ -80,6 +80,6 @@ const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 };
 
-export default AuthContext;
+export default AuthProvider;
 
 export const useUserContext = () => useContext(AuthContext);

@@ -6,3 +6,8 @@ export const SignupValidation = z.object({
   email: z.string().email(),
   password: z.string().min(8, { message: "Şifreniz en az 8 karakter olmalı" }),
 });
+
+export const SigninValidation = z.object({
+  email: z.string().email(),
+  password: z.string().min(8, { message: "Şifreniz en az 8 karakter olmalı" }),
+});
