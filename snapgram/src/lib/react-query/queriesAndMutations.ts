@@ -5,11 +5,13 @@ import {
   useInfiniteQuery,
 } from "@tanstack/react-query";
 import {
+  createPost,
   createUserAccount,
   signInAccount,
   signOutAccount,
 } from "../appwrite/api";
-import { INewUser } from "@/types";
+import { INewPost, INewUser } from "@/types";
+import { QUERY_KEYS } from "./queryKeys";
 
 // useCreateUserAccount fonksiyonu kullanıcıyı database' e kaydetmek için kullanılacak.
 // daha doğrusu yarattığımız kullanıcıyı fetchlemek için kullanılacak.
@@ -32,5 +34,17 @@ export const useSignInAccount = () => {
 export const useSignOutAccount = () => {
   return useMutation({
     mutationFn: signOutAccount,
+  });
+};
+
+export const useCreatePost = () => {
+  const queryClient = useQueryClient();
+  return useMutation({
+    mutationFn: (post: INewPost) => createPost(post),
+    onSuccess: () => {
+      queryClient.invalidateQueries({
+        queryKey: [QUERY_KEYS.GET_RECENT_POSTS], //ENUM NE ARAŞTIR. Ama kaba taslak typo hatası yapmanı engelleyen bir şey.
+      });
+    },
   });
 };
