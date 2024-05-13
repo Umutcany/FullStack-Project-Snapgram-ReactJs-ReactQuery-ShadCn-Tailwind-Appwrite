@@ -7,6 +7,7 @@ import {
 import {
   createPost,
   createUserAccount,
+  getRecentPosts,
   signInAccount,
   signOutAccount,
 } from "../appwrite/api";
@@ -46,5 +47,12 @@ export const useCreatePost = () => {
         queryKey: [QUERY_KEYS.GET_RECENT_POSTS], //ENUM NE ARAŞTIR. Ama kaba taslak typo hatası yapmanı engelleyen bir şey.
       });
     },
+  });
+};
+
+export const useGetRecentPosts = () => {
+  return useQuery({
+    queryKey: [QUERY_KEYS.GET_RECENT_POSTS],
+    queryFn: getRecentPosts,
   });
 };
