@@ -235,8 +235,8 @@ export async function savePost(postId: string, userId: string) {
       appwriteConfig.savesCollectionId,
       ID.unique(),
       {
-        user: userId,
         post: postId,
+        user: userId,
       }
     );
 
@@ -258,7 +258,7 @@ export async function deleteSavedPost(savedRecordId: string) {
 
     if (!statusCode) throw Error;
 
-    return { status: "ok" };
+    return { status: "Ok" };
   } catch (error) {
     console.log(error);
   }
