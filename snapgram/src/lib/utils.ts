@@ -28,4 +28,8 @@ export function timeAgo(dateString: string): string {
 
 const dateString: string = "-2024-05-13T17:51:21.434+00:00";
 const formattedDate: string = timeAgo(dateString);
-console.log(formattedDate); // Output will be something like "1 day ago"
+console.log(formattedDate);
+
+export const checkIsLiked = (likeList: string[], userId: string) => {
+  return likeList.includes(userId);
+};
