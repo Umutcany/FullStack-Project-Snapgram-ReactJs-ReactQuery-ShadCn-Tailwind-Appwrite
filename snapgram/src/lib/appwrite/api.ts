@@ -392,3 +392,17 @@ export async function searchPosts(searchTerm: string) {
     console.log(error);
   }
 }
+
+export async function getSavedPosts() {
+  try {
+    const posts = await databases.listDocuments(
+      appwriteConfig.databaseId,
+      appwriteConfig.savesCollectionId,
+      [Query.orderDesc("$updatedAt"), Query.limit(10)]
+    );
+
+    return posts;
+  } catch (error) {
+    console.log(error);
+  }
+}
